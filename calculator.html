@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="top">
+  <h2>🧮 Smart Calculator</h2>
+</header>
+
+<div class="cards">
+  <div class="card">
+    <input id="calc" readonly>
+    <div>
+      <button onclick="add('1')">1</button>
+      <button onclick="add('2')">2</button>
+      <button onclick="add('+')">+</button>
+      <button onclick="solve()">=</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function add(v){ calc.value += v }
+function solve(){ calc.value = eval(calc.value) }
+</script>
+
+</body>
+</html>
