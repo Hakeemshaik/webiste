@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Uber Earnings</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="top">
+  <h2>🚗 Uber Earnings Estimator</h2>
+</header>
+
+<div class="cards">
+  <div class="card">
+    <input type="number" id="hours" placeholder="Hours worked">
+    <input type="number" id="rate" placeholder="Rands per hour">
+    <button onclick="calc()">Estimate</button>
+    <p id="result"></p>
+  </div>
+</div>
+
+<script>
+function calc() {
+  const h = +hours.value;
+  const r = +rate.value;
+  result.innerText = `Estimated Earnings: R${(h*r).toFixed(2)}`;
+}
+</script>
+
+</body>
+</html>
