@@ -1,31 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Calculator</title>
+  <title>Advanced Calculator</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
 <header class="top">
-  <h2>🧮 Smart Calculator</h2>
+  <h2>🧮 Advanced Calculator</h2>
 </header>
 
 <div class="cards">
   <div class="card">
-    <input id="calc" readonly>
-    <div>
+    <input id="display" readonly>
+
+    <div class="grid">
+      <button onclick="clearAll()">C</button>
+      <button onclick="del()">⌫</button>
+      <button onclick="add('%')">%</button>
+      <button onclick="add('/')">÷</button>
+
+      <button onclick="add('7')">7</button>
+      <button onclick="add('8')">8</button>
+      <button onclick="add('9')">9</button>
+      <button onclick="add('*')">×</button>
+
+      <button onclick="add('4')">4</button>
+      <button onclick="add('5')">5</button>
+      <button onclick="add('6')">6</button>
+      <button onclick="add('-')">−</button>
+
       <button onclick="add('1')">1</button>
       <button onclick="add('2')">2</button>
+      <button onclick="add('3')">3</button>
       <button onclick="add('+')">+</button>
+
+      <button onclick="add('0')" style="grid-column: span 2">0</button>
+      <button onclick="add('.')">.</button>
       <button onclick="solve()">=</button>
     </div>
   </div>
 </div>
 
 <script>
-function add(v){ calc.value += v }
-function solve(){ calc.value = eval(calc.value) }
+const d = document.getElementById("display");
+
+function add(v){ d.value += v }
+function clearAll(){ d.value = "" }
+function del(){ d.value = d.value.slice(0,-1) }
+function solve(){
+  try { d.value = eval(d.value) }
+  catch { d.value = "Error" }
+}
 </script>
+
+<style>
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+</style>
 
 </body>
 </html>
