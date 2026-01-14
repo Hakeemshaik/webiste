@@ -13,7 +13,7 @@ function appendMessage(text, sender) {
 
 // Call GLM API
 async function getAIResponse(question) {
-  const apiKey = "YOUR_GLM_API_KEY"; // <-- Replace with your GLM API key
+  const apiKey = "b69b2fdbfc4147eb837271b6faf40fb6.pAEpQBbFaO9Vy3U7"; // <-- Replace with your GLM API key
   const apiUrl = "https://api.z.ai/v1/generate"; // GLM endpoint
 
   try {
