@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Timesheet Tracker</title>
+  <title>Advanced Timesheet</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -12,22 +12,49 @@
 
 <div class="cards">
   <div class="card">
-    <label>Start Time</label>
+    <input type="date" id="date">
     <input type="time" id="start">
-    <label>End Time</label>
     <input type="time" id="end">
-    <button onclick="calc()">Calculate</button>
-    <p id="out"></p>
+    <button onclick="addEntry()">Add Entry</button>
+
+    <ul id="list"></ul>
+    <strong id="total"></strong>
+    <button onclick="clearAll()">Clear All</button>
   </div>
 </div>
 
 <script>
-function calc() {
-  const s = document.getElementById("start").value;
-  const e = document.getElementById("end").value;
-  const h = (new Date(`1970-01-01T${e}`) - new Date(`1970-01-01T${s}`)) / 36e5;
-  document.getElementById("out").innerText = `Total Hours: ${h.toFixed(2)}`;
+let entries = JSON.parse(localStorage.getItem("timesheet") || "[]");
+
+function addEntry(){
+  const s = start.value, e = end.value;
+  if(!s || !e) return;
+
+  const h = (new Date(`1970-01-01T${e}`) -
+             new Date(`1970-01-01T${s}`)) / 36e5;
+
+  entries.push({ date: date.value, hours: h });
+  localStorage.setItem("timesheet", JSON.stringify(entries));
+  render();
 }
+
+function render(){
+  list.innerHTML = "";
+  let sum = 0;
+  entries.forEach(e => {
+    sum += e.hours;
+    list.innerHTML += `<li>${e.date}: ${e.hours.toFixed(2)} hrs</li>`;
+  });
+  total.innerText = `Total Hours: ${sum.toFixed(2)}`;
+}
+
+function clearAll(){
+  entries = [];
+  localStorage.clear();
+  render();
+}
+
+render();
 </script>
 
 </body>
